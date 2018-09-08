@@ -13,35 +13,38 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Star Wars Characters (DATA)
+// Objects for Reserved and Waitlist (DATA)
 // =============================================================
-var characters = [
-  {
-    routeName: "yoda",
-    name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
-  },
-  {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
-  },
-  {
-    routeName: "obiwankenobi",
-    name: "Obi Wan Kenobi",
-    role: "Jedi Master",
-    age: 55,
-    forcePoints: 1350
-  }
+
+var restaurant = [
+  reserved = [
+    {
+      name: "Adam",
+      phoneNumber: 2063301295,
+      email: "jchernick2010@gmail.com",
+      id: 01
+    },
+    {
+      name: "Brittney",
+      phoneNumber: 20655543214,
+      email: "britt.m@gmail.com",
+      id: 02
+    },
+  ],
+  waitlist = [
+    {
+      name: "Bill",
+      phoneNumber: 20624016592,
+      email: "bill.bartson@gmail.com",
+      id: 03
+    }
+  ],
 ];
 
 // Routes
 // =============================================================
 
+//all.html view.html add/html
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
@@ -55,25 +58,29 @@ app.get("/all", function(req, res) {
   res.sendFile(path.join(__dirname, "all.html"));
 });
 
-// Displays all characters
-app.get("/api/characters", function(req, res) {
-  return res.json(characters);
+// Displays reserved or waitlist objects at endpoint
+app.get("/api/reserved", function(req, res) {
+  return res.json(reserved);
+});
+
+app.get("/api/waitlist", function(req, res) {
+  return res.json(waitlist);
 });
 
 // Displays a single character, or returns false
-app.get("/api/characters/:character", function(req, res) {
-  var chosen = req.params.character;
+// app.get("/api/characters/:character", function(req, res) {
+//   var chosen = req.params.character;
 
-  console.log(chosen);
+//   console.log(chosen);
 
-  for (var i = 0; i < characters.length; i++) {
-    if (chosen === characters[i].routeName) {
-      return res.json(characters[i]);
-    }
-  }
+//   for (var i = 0; i < characters.length; i++) {
+//     if (chosen === characters[i].routeName) {
+//       return res.json(characters[i]);
+//     }
+//   }
 
-  return res.json(false);
-});
+//   return res.json(false);
+// });
 
 // Create New Characters - takes in JSON input
 app.post("/api/characters", function(req, res) {
