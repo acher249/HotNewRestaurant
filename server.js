@@ -68,23 +68,6 @@ app.get("/api/restaurant/waitlist", function(req, res) {
   return res.json(restaurant.waitlist);
 });
 
-
-
-// Displays a single character, or returns false
-// app.get("/api/characters/:character", function(req, res) {
-//   var chosen = req.params.character;
-
-//   console.log(chosen);
-
-//   for (var i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
-
-//   return res.json(false);
-// });
-
 // Create New Characters - takes in JSON input
 app.post("/api/restaurant", function(req, res) {
 
@@ -97,9 +80,7 @@ app.post("/api/restaurant", function(req, res) {
   }else{
     restaurant.waitlist.push(newTable);
   }
-
-
-
+  
   res.json(newTable);
 });
 
