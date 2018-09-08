@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 // Objects for Reserved and Waitlist (DATA)
 // =============================================================
 
-var restaurant = [
-  reserved = [
+var restaurant = {
+  reserved: [
     {
       name: "Adam",
       phoneNumber: 2063301295,
@@ -31,7 +31,7 @@ var restaurant = [
       id: 02
     },
   ],
-  waitlist = [
+  waitlist: [
     {
       name: "Bill",
       phoneNumber: 20624016592,
@@ -39,7 +39,7 @@ var restaurant = [
       id: 03
     }
   ],
-];
+};
 
 // Routes
 // =============================================================
