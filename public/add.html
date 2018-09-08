@@ -18,7 +18,7 @@
           <span class="glyphicon glyphicon-fire"></span>
         Hot Restaurant</h1>
       <hr>
-      <h2 class = "text-center">Make Your Reservation</h3>
+      <h2 class = "text-center">Make Your Reservation</h2>
         <br>
       <div class = "text-center">
           <a href="/all"><button class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> Reserved Tables</button></a>
@@ -68,26 +68,6 @@
     </div>
   </div>
 
-  <script type="text/javascript">
-    // Question: What does this code do?
-    $("#add-btn").on("click", function(event) {
-      event.preventDefault();
-
-      var newTable = {
-        name: $("#reserve_name").val().trim(),
-        phone: $("#reserve_phone").val().trim(),
-        email: $("#reserve_email").val().trim(),
-        id: $("#reserve_id").val().trim()
-      };
-
-      // Question: What does this code do??
-      $.post("/api/restaurant", newTable)
-        .then(function(data) {
-          console.log(data);
-          alert("Adding table...");
-        });
-
-    });
-  </script>
+  <script src="../server.js"></script>
 </body>
 </html>

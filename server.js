@@ -12,6 +12,7 @@ var PORT = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "./")));
 
 // Objects for Reserved and Waitlist (DATA)
 // =============================================================
@@ -46,15 +47,15 @@ var restaurant = {
 
 //all.html view.html add/html
 // Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
+app.get("./public/", function(req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
 });
 
-app.get("/add", function(req, res) {
+app.get("./public/add", function(req, res) {
   res.sendFile(path.join(__dirname, "add.html"));
 });
 
-app.get("/all", function(req, res) {
+app.get("./public/all", function(req, res) {
   res.sendFile(path.join(__dirname, "all.html"));
 });
 
@@ -66,6 +67,8 @@ app.get("/api/restaurant/reserved", function(req, res) {
 app.get("/api/restaurant/waitlist", function(req, res) {
   return res.json(restaurant.waitlist);
 });
+
+
 
 // Displays a single character, or returns false
 // app.get("/api/characters/:character", function(req, res) {
@@ -98,6 +101,20 @@ app.post("/api/restaurant", function(req, res) {
 
 
   res.json(newTable);
+});
+
+app.get("/api/restaurant", function (data) {
+  for (var i = 0; i < data.length; i++) {
+    console.log(data[i]);
+    var listGroupItem = $("<li class='list-group-item'>");
+
+    listGroupItem.append($("<h2>").text("ID: " + data[i].id));
+    listGroupItem.append($("<h2>").text("Name: " + data[i].name));
+    listGroupItem.append($("<h3>").text("Email: " + data[i].email));
+    listGroupItem.append($("<h3>").text("Phone: " + data[i].phone));
+
+    $("#tableSelection").append(listGroupItem);
+  }
 });
 
 // Starts the server to begin listening
