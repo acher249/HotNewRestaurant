@@ -103,20 +103,6 @@ app.post("/api/restaurant", function(req, res) {
   res.json(newTable);
 });
 
-app.get("/api/restaurant", function (data) {
-  for (var i = 0; i < data.length; i++) {
-    console.log(data[i]);
-    var listGroupItem = $("<li class='list-group-item'>");
-
-    listGroupItem.append($("<h2>").text("ID: " + data[i].id));
-    listGroupItem.append($("<h2>").text("Name: " + data[i].name));
-    listGroupItem.append($("<h3>").text("Email: " + data[i].email));
-    listGroupItem.append($("<h3>").text("Phone: " + data[i].phone));
-
-    $("#tableSelection").append(listGroupItem);
-  }
-});
-
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
