@@ -59,11 +59,11 @@ app.get("/all", function(req, res) {
 });
 
 // Displays reserved or waitlist objects at endpoint
-app.get("/api/reserved", function(req, res) {
+app.get("/api/restaurant/reserved", function(req, res) {
   return res.json(reserved);
 });
 
-app.get("/api/waitlist", function(req, res) {
+app.get("/api/restaurant/waitlist", function(req, res) {
   return res.json(waitlist);
 });
 
@@ -83,7 +83,7 @@ app.get("/api/waitlist", function(req, res) {
 // });
 
 // Create New Characters - takes in JSON input
-app.post("/api/characters", function(req, res) {
+app.post("/api/restaurant", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
   var newcharacter = req.body;
