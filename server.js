@@ -60,11 +60,11 @@ app.get("/all", function(req, res) {
 
 // Displays reserved or waitlist objects at endpoint
 app.get("/api/restaurant/reserved", function(req, res) {
-  return res.json(reserved);
+  return res.json(restaurant.reserved);
 });
 
 app.get("/api/restaurant/waitlist", function(req, res) {
-  return res.json(waitlist);
+  return res.json(restaurant.waitlist);
 });
 
 // Displays a single character, or returns false
@@ -84,19 +84,20 @@ app.get("/api/restaurant/waitlist", function(req, res) {
 
 // Create New Characters - takes in JSON input
 app.post("/api/restaurant", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
-  var newcharacter = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  var newTable = req.body;
 
-  console.log(newcharacter);
+  console.log(newTable);
+  console.log(restaurant.reserved);
+  if(restaurant.reserved.length < 5){
+    restaurant.reserved.push(newTable);
+  }else{
+    restaurant.waitlist.push(newTable);
+  }
 
-  characters.push(newcharacter);
 
-  res.json(newcharacter);
+
+  res.json(newTable);
 });
 
 // Starts the server to begin listening
